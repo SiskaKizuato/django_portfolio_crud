@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>QDB PROD</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link rel="stylesheet" href="style.css">
+
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  
+  <link href={% static 'app/css/style.css' %} rel="stylesheet">
+
+</head>
+
+<body>
+  {% block content %}
+  {% endblock content %}
+
+</body>
+
+</html>
