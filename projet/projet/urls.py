@@ -25,4 +25,7 @@ urlpatterns = [
     path('menuModif', views.menuModif, name="menuModif"),
     path('heroUpdate/<int:id>', views.heroUpdate, name="heroUpdate"),
     path('aboutUpdate/<int:id>', views.aboutUpdate, name="aboutUpdate"),
+    path('toCreateSkill', views.toCreateSkill, name="toCreateSkill"),
+    path('skillsUpdate/<int:id>', views.skillsUpdate, name="aboutUpdate"),
+    path('skillDestroy/<int:id>', views.skillDestroy, name="skillDestroy")
 ]

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+ 
+<section class="section-bg">
+
+  <section id="skills" class="skills section-bg" style="padding-top: 0em; padding-bottom: 1em;">
+    <div class="container">
+
+      <div class="section-title mb-5">
+        <div class="d-flex gap-2">
+            <h2>Skills</h2>
+        
+        </div>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+      </div>
+
+      <div class="row skills-content">
+
+        {% for x in skillsModel %}
+              <div class="col-lg-6" data-aos="fade-up">
+                <div class="progress">
+                  <span class="skill">{{ x.skill }}
+                      <i id="valSkill" class="val d-flex">
+                          <a href="">EDIT</a>
+
+                          <form action="/skillDestroy/{{x.id}}" method="post">
+                              {% csrf_token %}
+                              <button class="text-primary fw-bold" style="border: none; background-color: transparent; padding-top: 0;" type="submit">DELETE</button>
+                          </form>
+                          {{ x.value }}%
+                      </i>
+                  </span>
+                  <div class="progress-bar-wrap">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ x.value }}" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+
+      </div>
+
+      <div class="text-center mt-5">
+          <a class="btn btn-outline-success" href="" type="submit">Create Skill</a>
+      </div>
+
+    </div>
+  </section>
+
+</section>
+{% endblock  %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class HeroModel(models.Model):
     prenom = models.CharField(max_length=35)
@@ -19,3 +20,7 @@ class AboutModel(models.Model):
     email = models.EmailField()
     freelance = models.CharField(max_length=20)
     description = models.TextField()
+    
+class SkillsModel(models.Model):
+    skill = models.CharField(max_length=30)
+    value = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])

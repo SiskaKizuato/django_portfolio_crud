@@ -1,5 +1,5 @@
 from django_seed import Seed
-from .models import HeroModel, AboutModel
+from .models import HeroModel, AboutModel, SkillsModel
 
 def run():
     seeder = Seed.seeder()
@@ -23,6 +23,18 @@ def run():
         "freelance" : "Available",
         "description" : "Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis. Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis culpa magni laudantium dolores.",
     })
+    
+    datas = [
+        { "skill": "HTML", "value": 100 },
+        { "skill": "CSS", "value": 90 },
+        { "skill": "JavaScript", "value": 75 },
+        { "skill": "PHP", "value": 80 },
+        { "skill": "WordPress/CMS", "value": 90 },
+        { "skill": "Photoshop", "value": 55 }
+    ]
+
+    for i in datas:
+        seeder.add_entity(SkillsModel, 1, i)
 
     seeder.execute()
     print("Datas _about OK !")

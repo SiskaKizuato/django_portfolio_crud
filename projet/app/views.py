@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from app.forms import HeroForm, AboutForm
-from app.models import HeroModel, AboutModel
+from app.forms import HeroForm, AboutForm, SkillsForm
+from app.models import HeroModel, AboutModel, SkillsModel
 
 # Create your views here.
 def index(request):
@@ -37,3 +37,24 @@ def aboutUpdate(request, id):
     else: 
         aboutForm = AboutForm(instance=edit)
     return render(request, 'app/backoffice/aboutUpdate.html', {"aboutForm": aboutForm})
+
+def toCreateSkill(request):
+    skillsModel = SkillsModel.objects.all()
+    return render(request, "app/backoffice/toCreateSkill.html", { "skillsModel": skillsModel })
+
+
+def skillsUpdate(request, id):
+    edit = skillsModel.objects.get(id=id)
+    if request.method == "POST":
+        skillsForm = skillsForm(request.POST, instance=edit)
+        if skillsForm.is_valid():
+            skillsForm.save()
+            return redirect("backoffice")
+    else: 
+        skillsForm = skillsForm(instance=edit)
+    return render(request, 'app/backoffice/aboutUpdate.html', {"skillsForm": skillsForm})
+
+def skillDestroy(request, id):
+    destroy = SkillsModel(id)
+    destroy.delete()
+    return redirect("toCreateSkill")

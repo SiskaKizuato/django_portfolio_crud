@@ -1,5 +1,5 @@
 from django import forms
-from .models import HeroModel, AboutModel
+from .models import HeroModel, AboutModel, SkillsModel
 
 class HeroForm(forms.ModelForm):
     class Meta:
@@ -9,4 +9,9 @@ class HeroForm(forms.ModelForm):
 class AboutForm(forms.ModelForm):
     class Meta:
         model = AboutModel
+        fields = "__all__"
+        
+class SkillsForm(forms.ModelForm):
+    class Meta :
+        model = SkillsModel
         fields = "__all__"
