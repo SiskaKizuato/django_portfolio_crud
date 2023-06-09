@@ -6,12 +6,14 @@ from app.models import HeroModel, AboutModel, SkillsModel
 def index(request):
     heroModel = HeroModel.objects.all()
     aboutModel = AboutModel.objects.all()
-    return render(request, 'app/index.html', {"heroModel": heroModel, "aboutModel": aboutModel})
+    skillsModel = SkillsModel.objects.all()
+    return render(request, 'app/index.html', {"heroModel": heroModel, "aboutModel": aboutModel, "skillsModel": skillsModel})
 
 def backoffice(request):
     heroModel = HeroModel.objects.all()
     aboutModel = AboutModel.objects.all()
-    return render(request, 'app/backoffice/backoffice.html', {"heroModel": heroModel, "aboutModel": aboutModel})
+    skillsModel = SkillsModel.objects.all()
+    return render(request, 'app/backoffice/backoffice.html', {"heroModel": heroModel, "aboutModel": aboutModel, "skillsModel": skillsModel})
 
 def menuModif(request):
     return render(request, 'app/backoffice/menuModif.html')
@@ -43,18 +45,28 @@ def toCreateSkill(request):
     return render(request, "app/backoffice/toCreateSkill.html", { "skillsModel": skillsModel })
 
 
-def skillsUpdate(request, id):
-    edit = skillsModel.objects.get(id=id)
+def skillEdit(request, id):
+    edit = SkillsModel.objects.get(id=id)
     if request.method == "POST":
-        skillsForm = skillsForm(request.POST, instance=edit)
+        skillsForm = SkillsForm(request.POST, instance=edit)
         if skillsForm.is_valid():
             skillsForm.save()
-            return redirect("backoffice")
+            return redirect("toCreateSkill")
     else: 
-        skillsForm = skillsForm(instance=edit)
-    return render(request, 'app/backoffice/aboutUpdate.html', {"skillsForm": skillsForm})
+        skillsForm = SkillsForm(instance=edit)
+    return render(request, 'app/backoffice/skillEdit.html', {"skillsForm": skillsForm})
 
 def skillDestroy(request, id):
     destroy = SkillsModel(id)
     destroy.delete()
     return redirect("toCreateSkill")
+
+def skillAdd(request):
+    if request.method=="POST":
+        skillForm = SkillsForm(request.POST)
+        if skillForm.is_valid():
+            skillForm.save()
+            return redirect("toCreateSkill")
+    else : 
+        skillForm=SkillsForm()
+    return render(request, 'app/backoffice/skillAdd.html', {"skillForm": skillForm})

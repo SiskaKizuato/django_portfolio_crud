@@ -22,7 +22,7 @@
                 <div class="progress">
                   <span class="skill">{{ x.skill }}
                       <i id="valSkill" class="val d-flex">
-                          <a href="">EDIT</a>
+                          <a href={% url 'skillEdit' x.id %}>EDIT</a>
 
                           <form action="/skillDestroy/{{x.id}}" method="post">
                               {% csrf_token %}
@@ -41,7 +41,7 @@
       </div>
 
       <div class="text-center mt-5">
-          <a class="btn btn-outline-success" href="" type="submit">Create Skill</a>
+          <a class="btn btn-outline-success" href={% url 'skillAdd' %} type="submit">Create Skill</a>
       </div>
 
     </div>
