@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <form class="classForm" method="post">
+        {% csrf_token %}
+        <div class="container">
+  
+          <div class="section-title">
+            <div class="aboutFlex">
+              <h2>About</h2>
+              <div class="btnEdit text-center mt-5 aboutFlex">
+                <button type="submit" class="btn btn-outline-primary" id="aEdit">UPGRADE</button>
+              </div>
+            </div>
+            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-4" data-aos="fade-right">
+              <img src="{% static aboutModel.0.picture %}" class="img-fluid" alt="">
+            </div>
+            <div>{{aboutForm.picture}}</div>
+            <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+              <h3>{{aboutForm.job}}</h3>
+              <p class="fst-italic">
+                {{aboutForm.intro}}
+              </p>
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul>
+                    <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>{{aboutForm.birthday}}</span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>{{aboutForm.website}}</span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>{{aboutForm.phone}}</span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>{{aboutForm.city}}</span></li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul>
+                    <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{{aboutForm.age}}</span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>{{aboutForm.degree}}</span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>PhEmailone:</strong> <span>{{aboutForm.email}}</span></li>
+                    <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>{{aboutForm.freelance}}</span></li>
+                  </ul>
+                </div>
+              </div>
+              <p>
+                {{aboutForm.description}}
+              </p>
+            </div>
+          </div>
+  
+        </div>
+        </form>
+      </section><!-- End About Section -->
+{% endblock  %}

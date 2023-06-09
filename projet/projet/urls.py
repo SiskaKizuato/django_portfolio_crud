@@ -21,4 +21,8 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index"),
+    path('backoffice', views.backoffice, name="backoffice"),
+    path('menuModif', views.menuModif, name="menuModif"),
+    path('heroUpdate/<int:id>', views.heroUpdate, name="heroUpdate"),
+    path('aboutUpdate/<int:id>', views.aboutUpdate, name="aboutUpdate"),
 ]

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center indexHero">
+        <form class="classForm" method="post">
+          {% csrf_token %}
+      <div class="hero-container" data-aos="fade-in">
+        <h1>{{heroForm.prenom}}</h1>
+        <h1> </h1>
+        <h1>{{heroForm.nom}}</h1>
+        <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
+      </div>
+      <div class="btnEdit2 text-center mt-5">
+        <button type="submit" class="btn btn-outline-light" id="aEdit">UPDATE</button>
+      </div>
+    </form>
+    </section><!-- End Hero -->
+{% endblock  %}

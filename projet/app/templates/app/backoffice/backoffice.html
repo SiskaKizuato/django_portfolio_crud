@@ -52,7 +52,7 @@
         <img src="{% static 'app/img/profile-img.jpg' %}" alt="" class="img-fluid rounded-circle">
         <div class="flexAlignJustify gap10 pl10">
           <h1 class="text-light "><a href="{% url 'index' %}">{{heroModel.0.prenom}} {{heroModel.0.nom}}</a></h1>
-          <a href={% url 'backoffice' %} style="padding-top: 0.3em;" class=""><i class="bi bi-arrow-bar-right"></i></a> 
+          <a href={% url 'index' %} style="padding-top: 0.3em;" class=""><i class="red bi bi-arrow-bar-right"></i></a> 
         </div>
         <div class="social-links mt-3 text-center">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -82,6 +82,9 @@
       <h1>{{heroModel.0.prenom}} {{heroModel.0.nom}}</h1>
       <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span></p>
     </div>
+    <div class="btnEdit text-center mt-5">
+      <a href={% url 'heroUpdate' heroModel.0.id %} class="btn btn-outline-light" id="aEdit">EDIT</a>
+    </div>
   </section><!-- End Hero -->
 
   <main id="main">
@@ -91,7 +94,12 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>About</h2>
+          <div class="aboutFlex">
+            <h2>About</h2>
+            <div class="btnEdit text-center mt-5 aboutFlex">
+              <a href={% url 'aboutUpdate' aboutModel.0.id %} class="btn btn-outline-primary" id="aEdit">EDIT</a>
+            </div>
+          </div>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
