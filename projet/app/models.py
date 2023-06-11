@@ -24,3 +24,8 @@ class AboutModel(models.Model):
 class SkillsModel(models.Model):
     skill = models.CharField(max_length=30)
     value = models.PositiveIntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
+    
+class ContactModel(models.Model):
+    location = models.CharField(max_length=300)
+    email = models.EmailField()
+    call = models.CharField(max_length=50)

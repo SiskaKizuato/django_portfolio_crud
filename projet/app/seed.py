@@ -1,5 +1,5 @@
 from django_seed import Seed
-from .models import HeroModel, AboutModel, SkillsModel
+from .models import HeroModel, AboutModel, SkillsModel, ContactModel
 
 def run():
     seeder = Seed.seeder()
@@ -35,6 +35,12 @@ def run():
 
     for i in datas:
         seeder.add_entity(SkillsModel, 1, i)
+        
+    seeder.add_entity(ContactModel, 1, {
+        "location": "A108 Adam Street, New York, NY 535022",
+        "email": "info@example.com",
+        "call": "+1 5589 55488 55"
+    })
 
     seeder.execute()
     print("Datas _about OK !")

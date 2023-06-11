@@ -1,19 +1,21 @@
 from django.shortcuts import render, redirect
-from app.forms import HeroForm, AboutForm, SkillsForm
-from app.models import HeroModel, AboutModel, SkillsModel
+from app.forms import HeroForm, AboutForm, SkillsForm, ContactForm
+from app.models import HeroModel, AboutModel, SkillsModel, ContactModel
 
 # Create your views here.
 def index(request):
     heroModel = HeroModel.objects.all()
     aboutModel = AboutModel.objects.all()
     skillsModel = SkillsModel.objects.all()
-    return render(request, 'app/index.html', {"heroModel": heroModel, "aboutModel": aboutModel, "skillsModel": skillsModel})
+    contactModel = ContactModel.objects.all()
+    return render(request, 'app/index.html', {"heroModel": heroModel, "aboutModel": aboutModel, "skillsModel": skillsModel, "contactModel":contactModel})
 
 def backoffice(request):
     heroModel = HeroModel.objects.all()
     aboutModel = AboutModel.objects.all()
     skillsModel = SkillsModel.objects.all()
-    return render(request, 'app/backoffice/backoffice.html', {"heroModel": heroModel, "aboutModel": aboutModel, "skillsModel": skillsModel})
+    contactModel = ContactModel.objects.all()
+    return render(request, 'app/backoffice/backoffice.html', {"heroModel": heroModel, "aboutModel": aboutModel, "skillsModel": skillsModel, "contactModel": contactModel})
 
 def menuModif(request):
     return render(request, 'app/backoffice/menuModif.html')
@@ -39,6 +41,17 @@ def aboutUpdate(request, id):
     else: 
         aboutForm = AboutForm(instance=edit)
     return render(request, 'app/backoffice/aboutUpdate.html', {"aboutForm": aboutForm})
+
+def contactUpdate(request, id):
+    edit = ContactModel.objects.get(id=id)
+    if request.method == "POST":
+        contactForm = ContactForm(request.POST, instance=edit)
+        if contactForm.is_valid():
+            contactForm.save()
+            return redirect("backoffice")
+    else: 
+        contactForm = ContactForm(instance=edit)
+    return render(request, 'app/backoffice/contactUpdate.html', {"contactForm": contactForm})
 
 def toCreateSkill(request):
     skillsModel = SkillsModel.objects.all()
