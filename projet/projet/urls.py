@@ -27,7 +27,11 @@ urlpatterns = [
     path('aboutUpdate/<int:id>', views.aboutUpdate, name="aboutUpdate"),
     path('contactUpdate/<int:id>', views.contactUpdate, name="contactUpdate"),
     path('toCreateSkill', views.toCreateSkill, name="toCreateSkill"),
+    path('toCreateTestimonials', views.toCreateTestimonials, name="toCreateTestimonials"),
     path('skillEdit/<int:id>', views.skillEdit, name="skillEdit"),
+    path('testimonialsEdit/<int:id>', views.testimonialsEdit, name="testimonialsEdit"),
     path('skillDestroy/<int:id>', views.skillDestroy, name="skillDestroy"),
+    path('testimonialsDestroy/<int:id>', views.testimonialsDestroy, name="testimonialsDestroy"),
     path('skillAdd/', views.skillAdd, name="skillAdd"),
+    path('testimonialsAdd/', views.testimonialsAdd, name="testimonialsAdd"),
 ]

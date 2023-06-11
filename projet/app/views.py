@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from app.forms import HeroForm, AboutForm, SkillsForm, ContactForm
-from app.models import HeroModel, AboutModel, SkillsModel, ContactModel
+from app.forms import HeroForm, AboutForm, SkillsForm, ContactForm, TestimonialsForm
+from app.models import HeroModel, AboutModel, SkillsModel, ContactModel, TestimonialsModel
 
 # Create your views here.
 def index(request):
@@ -8,14 +8,16 @@ def index(request):
     aboutModel = AboutModel.objects.all()
     skillsModel = SkillsModel.objects.all()
     contactModel = ContactModel.objects.all()
-    return render(request, 'app/index.html', {"heroModel": heroModel, "aboutModel": aboutModel, "skillsModel": skillsModel, "contactModel":contactModel})
+    testimonialsModel = TestimonialsModel.objects.all()
+    return render(request, 'app/index.html', {"heroModel": heroModel, "aboutModel": aboutModel, "skillsModel": skillsModel, "contactModel":contactModel, "testimonialsModel":testimonialsModel})
 
 def backoffice(request):
     heroModel = HeroModel.objects.all()
     aboutModel = AboutModel.objects.all()
     skillsModel = SkillsModel.objects.all()
     contactModel = ContactModel.objects.all()
-    return render(request, 'app/backoffice/backoffice.html', {"heroModel": heroModel, "aboutModel": aboutModel, "skillsModel": skillsModel, "contactModel": contactModel})
+    testimonialsModel = TestimonialsModel.objects.all()
+    return render(request, 'app/backoffice/backoffice.html', {"heroModel": heroModel, "aboutModel": aboutModel, "skillsModel": skillsModel, "contactModel": contactModel, "testimonialsModel":testimonialsModel})
 
 def menuModif(request):
     return render(request, 'app/backoffice/menuModif.html')
@@ -57,6 +59,10 @@ def toCreateSkill(request):
     skillsModel = SkillsModel.objects.all()
     return render(request, "app/backoffice/toCreateSkill.html", { "skillsModel": skillsModel })
 
+def toCreateTestimonials(request):
+    testimonialsModel = TestimonialsModel.objects.all()
+    return render(request, "app/backoffice/toCreateTestimonials.html", { "testimonialsModel": testimonialsModel })
+
 
 def skillEdit(request, id):
     edit = SkillsModel.objects.get(id=id)
@@ -69,10 +75,26 @@ def skillEdit(request, id):
         skillsForm = SkillsForm(instance=edit)
     return render(request, 'app/backoffice/skillEdit.html', {"skillsForm": skillsForm})
 
+def testimonialsEdit(request, id):
+    edit = TestimonialsModel.objects.get(id=id)
+    if request.method == "POST":
+        testimonialsForm = TestimonialsForm(request.POST, instance=edit)
+        if testimonialsForm.is_valid():
+            testimonialsForm.save()
+            return redirect("toCreateTestimonials")
+    else: 
+        testimonialsForm = TestimonialsForm(instance=edit)
+    return render(request, 'app/backoffice/testimonialsEdit.html', {"testimonialsForm": testimonialsForm})
+
 def skillDestroy(request, id):
     destroy = SkillsModel(id)
     destroy.delete()
     return redirect("toCreateSkill")
+
+def testimonialsDestroy(request, id):
+    destroy = TestimonialsModel(id)
+    destroy.delete()
+    return redirect("toCreateTestimonials")
 
 def skillAdd(request):
     if request.method=="POST":
@@ -83,3 +105,13 @@ def skillAdd(request):
     else : 
         skillForm=SkillsForm()
     return render(request, 'app/backoffice/skillAdd.html', {"skillForm": skillForm})
+
+def testimonialsAdd(request):
+    if request.method=="POST":
+        testimonialsForm = TestimonialsForm(request.POST)
+        if testimonialsForm.is_valid():
+            testimonialsForm.save()
+            return redirect("toCreateTestimonials")
+    else : 
+        testimonialsForm=TestimonialsForm()
+    return render(request, 'app/backoffice/testimonialsAdd.html', {"testimonialsForm": testimonialsForm})

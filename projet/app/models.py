@@ -29,3 +29,9 @@ class ContactModel(models.Model):
     location = models.CharField(max_length=300)
     email = models.EmailField()
     call = models.CharField(max_length=50)
+
+class TestimonialsModel(models.Model):
+    name = models.CharField(max_length=30)
+    job = models.CharField(max_length=30)
+    testimonial = models.TextField()
+    picture = models.CharField(max_length=700)
